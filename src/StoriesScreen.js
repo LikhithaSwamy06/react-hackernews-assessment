@@ -3,23 +3,27 @@ import "./style.css";
 
 export default function StoriesScreen() {
   const [topStories, setTopStories] = useState([]);
+  let i = 0;
 
   useEffect(() => {
     fetch("https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty")
       .then(response => response.json())
       .then(data => {
-        for (let i = 0; i < 10; i++) {
+        // setTopStoriesIds([...data]);
+        console.log("enter");
+        for (i = 0; i < 10; i++) {
           console.log("i", i);
           onApiCall(data[i]);
         }
       });
-  });
+  }, []);
 
   const onApiCall = id => {
     fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)
       .then(response => response.json())
       .then(data => {
         topStories.push(data);
+        console.log("data", data);
         setTopStories([...topStories]);
       });
   };
@@ -28,7 +32,7 @@ export default function StoriesScreen() {
     let dateStamp = new Date(timeStamp);
     return dateStamp;
   };
-  // console.log(topStories);
+  console.log("topStories", topStories);
   return (
     <div>
       <div style={{ background: "red", width: "100%" }}>
