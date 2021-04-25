@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 
-export default function StoriesScreen() {
+export default function StoriesScreen(props) {
   const [topStories, setTopStories] = useState([]);
-
+  console.log(props);
   useEffect(() => {
     fetch("https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty")
       .then(response => response.json())
@@ -41,8 +41,16 @@ export default function StoriesScreen() {
       <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
         {topStories?.length > 0 &&
           topStories.map((doc, index) => (
-            <div key={index} style={{ margin: "20px", width: "200px" }}>
-              <div>{index}</div>
+            <div
+              key={index}
+              onClick={() =>
+                props.history.push({
+                  pathname: "/comments",
+                  state: doc
+                })
+              }
+              style={{ margin: "20px", width: "200px", cursor: "pointer" }}
+            >
               <div style={{ fontWeight: "bold" }}>{doc.title}</div>
               <div style={{ color: "#888" }}>{doc.time}</div>
             </div>
