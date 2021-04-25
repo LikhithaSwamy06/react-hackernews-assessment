@@ -9,7 +9,7 @@ export default function StoriesScreen() {
       .then(response => response.json())
       .then(data => {
         for (let i = 0; i < 10; i++) {
-          // onApiCall(data[i]);
+          onApiCall(data[i]);
         }
       });
   });
@@ -30,7 +30,7 @@ export default function StoriesScreen() {
       .then(response => response.json())
       .then(data => {
         topStories.push(data);
-        setTopStories(topStories);
+        setTopStories([...topStories]);
       });
   };
 
