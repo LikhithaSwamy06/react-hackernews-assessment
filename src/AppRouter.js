@@ -1,17 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
 import StoriesScreen from "./StoriesScreen.js";
 import CommentsScreen from "./CommentsScreen.js";
 
-function AppRouter(props) {
-  console.log(props);
+function AppRouter() {
+  let match = useRouteMatch();
+
   return (
-    <Router>
-      <Switch>
-        <Route path="/" component={StoriesScreen} />
-        <Route path="/comments" component={CommentsScreen} />
-      </Switch>
-    </Router>
+    <Switch>
+      <Route path={`${match.url}/`} component={StoriesScreen} />
+      <Route path="/comments" component={CommentsScreen} />
+    </Switch>
   );
 }
 export default AppRouter;

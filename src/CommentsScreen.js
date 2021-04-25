@@ -3,7 +3,7 @@ import "./style.css";
 
 export default function CommentsScreen(props) {
   const { kids } = props.location.state;
-  const [topStories, setTopStories] = useState([]);
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     for (let i = 0; i < (kids.length > 20 ? 20 : kids.length); i++) {
@@ -32,21 +32,8 @@ export default function CommentsScreen(props) {
   return (
     <div>
       <div style={{ background: "red", width: "100%" }}>
-        <h1>sdfsdfsdfs Nedfsdfsdws</h1>
+        <h1>Hacker News</h1>
         <p>Top 20 Comments</p>
-      </div>
-      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
-        {topStories?.length > 0 &&
-          topStories.map((doc, index) => (
-            <div
-              key={index}
-              onClick={() => props.history.push("/")}
-              style={{ margin: "20px", width: "200px", cursor: "pointer" }}
-            >
-              <div style={{ fontWeight: "bold" }}>{doc.title}</div>
-              <div style={{ color: "#888" }}>{doc.time}</div>
-            </div>
-          ))}
       </div>
     </div>
   );
