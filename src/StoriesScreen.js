@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { timeStampConvertor } from "./timestampconvertor.js";
 import "./style.css";
 
 export default function StoriesScreen(props) {
@@ -20,11 +21,6 @@ export default function StoriesScreen(props) {
         topStories.push(data);
         setTopStories([...topStories]);
       });
-  };
-
-  const timeStampConvertor = timeStamp => {
-    let dateStamp = new Date(timeStamp);
-    return dateStamp;
   };
 
   return (
