@@ -9,21 +9,11 @@ export default function StoriesScreen() {
       .then(response => response.json())
       .then(data => {
         for (let i = 0; i < 10; i++) {
+          console.log("i", i);
           onApiCall(data[i]);
         }
       });
   });
-
-  // useEffect(() => {
-  //   if (topStories?.length) {
-  //     console.log("topStories");
-  //     for (let i = 0; i < topStories.length; i++) {
-  //       onApiCall(
-  //         "https://hacker-news.firebaseio.com/v0/item/26925197.json?print=pretty"
-  //       );
-  //     }x
-  //   }
-  // }, [topStories]);
 
   const onApiCall = id => {
     fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)
@@ -48,9 +38,10 @@ export default function StoriesScreen() {
       <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
         {topStories?.length > 0 &&
           topStories.map((doc, index) => (
-            <div key={index}>
-              <div>{doc.title}</div>
-              <div>{doc.time}</div>
+            <div key={index} style={{ margin: "20px", width: "200px" }}>
+              <div>{index}</div>
+              <div style={{ fontWeight: "bold" }}>{doc.title}</div>
+              <div style={{ color: "#888" }}>{doc.time}</div>
             </div>
           ))}
       </div>
